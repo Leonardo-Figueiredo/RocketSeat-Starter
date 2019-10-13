@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <title>Exercício 03 do Módulo 02</title>
+  </head>
+  <body>
+    <div>
+      <ul id="nameList"></ul>
+    </div>
+
+    <script>
+    var nomes = ["Diego", "Gabriel", "Lucas"];
+    for(var i = 0; i < nomes.length; i++) {
+      var textElement = document.createTextNode(nomes[i])
+      var ulElement = document.querySelector('#nameList');
+      var listElement = document.createElement('li');
+      listElement.appendChild(textElement);    
+      ulElement.appendChild(listElement);
+    }
+
+    /*    var nomes = ["Diego", "Gabriel", "Lucas"];
+    var textElement = document.createTextNode(nomes[0])
+
+    var listElement = document.createElement('li');
+    listElement.appendChild(textElement);
+
+    var ulElement = document.querySelector('#nameList');
+    ulElement.appendChild(listElement);*/
+    </script>
+  </body>
+</html>

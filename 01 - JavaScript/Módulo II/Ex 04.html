@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <title>Exercício 04 do Módulo 02</title>
+  </head>
+  <body>
+    <div>
+      <p>Insira o nome e clique no botão para criar a lista</p>
+      <input type="text" name="nome">
+      <button onClick="adicionar()">Adicionar</button>
+      <ul id="nameList"></ul>
+    </div>
+
+    <script>
+      var nomes = ["Diego", "Gabriel", "Lucas"];
+      for(var i = 0; i < nomes.length; i++) {
+        var textElement = document.createTextNode(nomes[i])
+        var listElement = document.createElement('li');
+        listElement.appendChild(textElement);
+        
+        var ulElement = document.querySelector('#nameList');
+        ulElement.appendChild(listElement);
+      }
+      function adicionar() {
+        var inputElement = document.querySelector(['input[name=nome]'])
+        var nomeElement = document.createTextNode(inputElement.value);
+        var listElement = document.createElement('li');
+
+        ulElement.appendChild(listElement);
+        listElement.appendChild(nomeElement);
+        inputElement.value = '';
+      }
+    </script>
+  </body>
+</html>

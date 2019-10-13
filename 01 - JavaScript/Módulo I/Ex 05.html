@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>Exercício 02</title>
+  </head>
+  <body>
+    <script>
+      var usuarios = [
+        {
+          nome: 'Diego',
+          habilidades: ["Javascript", "ReactJS", "Redux"]
+        },
+        {
+          nome: 'Gabriel',
+          habilidades: ["VueJS", "Ruby on Rails", "Elixir"]
+        }
+      ];
+
+      function infoUsers(usuarioDetalhado){
+        for (let pessoa of usuarioDetalhado) {
+          console.log(('O ' + pessoa.nome + ' possui as habilidades:' + pessoa.habilidades.join('-')));
+          
+        }
+      }
+      infoUsers(usuarios);
+
+
+    </script>
+  </body>
+</html>

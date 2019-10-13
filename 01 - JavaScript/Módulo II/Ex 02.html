@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <title>Exercício 02 do Módulo 02</title>
+  </head>
+  <body>
+    <button id="btn">Criar Quadrado</button>
+    <div id="square"></div>
+
+    <script>
+      var btnElement = document.querySelector('#btn');
+      var containerElement = document.querySelector('#square');
+
+      function getRandomColor() {
+        var letters = "0123456789ABCDEF";
+        var color = "#";
+          for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+          }
+        return color;
+      }
+
+      btnElement.onclick = function () {
+        var divElement = document.createElement('div');
+        var newColor = getRandomColor();
+
+        divElement.style.width = 100;
+        divElement.style.height = 100;
+        divElement.style.marginTop = 20;
+        divElement.style.backgroundColor = '#F00';
+        
+        divElement.onmouseover = function () {
+          divElement.style.backgroundColor = newColor;
+        }
+
+        containerElement.appendChild(divElement);        
+      }
+    </script>
+  </body>
+</html>

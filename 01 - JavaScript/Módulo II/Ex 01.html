@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <title>Exercício 01 do Módulo 02</title>
+  </head>
+  <body>
+    <button id="btn">Criar Quadrado</button>
+    <div id="square"></div>
+
+    <script>
+      var btnElement = document.querySelector('#btn');
+      var containerElement = document.querySelector('#square');
+
+      btnElement.onclick = function () {
+        var divElement = document.createElement('div');
+
+        divElement.style.width = 100;
+        divElement.style.height = 100;
+        divElement.style.marginTop = 20;
+        divElement.style.backgroundColor = '#F00';
+        containerElement.appendChild(divElement);        
+      }
+
+    </script>
+  </body>
+</html>
+
+
+
+<!-- <html>
+  <head>
+    <meta charset='UTF-8'>
+    <title>Exercício 01 do Modulo 02</title>
+  </head>
+  <body>     
+      <button id='btn'>Criar Quadrado</button>      
+      <div id='square'></div>
+
+    <script>
+      var btnElement = document.querySelector('button#btn');
+      btnElement.onclick = function() {
+        // alert('Botão Clicado');
+        var divElement = document.createElement('div');
+        
+        divElement.style.width = '100';
+        divElement.style.height = '100';
+        divElement.style.backgroundColor = '#FF0000';
+        divElement.style.marginTop ='20';
+
+        var squareElement = document.querySelector('#square');
+        squareElement.appendChild(divElement);
+      }
+
+    </script>
+  </body>
+</html> -->
