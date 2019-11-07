@@ -1,25 +1,30 @@
-const arr = [1, 3, 4, 5, 8, 9];
+class User {
+  constructor(email, senha) {
+    this.email = email;
+    this.senha = senha;
+  }
 
-const newArr = arr.map(function(item, index) {
-  return item + index;
-});
+  isAdmin() {
+    return this.admin === true;
+  }
 
-console.log(newArr);
+  mostraDados() {
+    console.log(`e-mail: ${this.email} Senha: ${this.senha}`);
+  }
 
-const sum = arr.reduce(function(total, next) {
-  return total + next;
-})
+}
 
-console.log(sum);
+class Admin extends User {
+  constructor(email, senha) {
+    super(email, senha);
+    this.admin = true;
+  }
+}
 
-const filter = arr.filter(function(item) {
-  return item % 2 === 0;
-});
+const User1 = new User('email@testee.com', 'senha1234');
+const Adm1  = new Admin('email@teste.com', 'senha123');
 
-console.log(filter);
-
-const find = arr.find(function(item) {
-  return item === 4;
-});
-
-console.log(find);
+console.log(User1.isAdmin()); //False
+console.log(Adm1.isAdmin());  //True
+User1.mostraDados();
+Adm1.mostraDados();
