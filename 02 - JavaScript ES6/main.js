@@ -1,30 +1,27 @@
-class User {
-  constructor(email, senha) {
-    this.email = email;
-    this.senha = senha;
-  }
+const usuarios = [
+  { nome: 'Diego'  , idade: 23, empresa: 'Rocketseat' },
+  { nome: 'Gabriel', idade: 15, empresa: 'Rocketseat' },
+  { nome: 'Lucas'  , idade: 30, empresa: 'Facebook' },
+ ];
 
-  isAdmin() {
-    return this.admin === true;
-  }
+ //map
+ const idades = usuarios.map(item => item.idade);
+ console.log(idades);
 
-  mostraDados() {
-    console.log(`e-mail: ${this.email} Senha: ${this.senha}`);
-  }
+ //filter
+ const maiorIdade = usuarios.filter(
+   item => item.empresa === 'Rocketseat' && item.idade >= 18
+  );
+ console.log(maiorIdade);
 
-}
+ //find
+ const googleEmployee = usuarios.find(
+   item => item.empresa === 'Google'
+  );
+  console.log(googleEmployee);
 
-class Admin extends User {
-  constructor(email, senha) {
-    super(email, senha);
-    this.admin = true;
-  }
-}
-
-const User1 = new User('email@testee.com', 'senha1234');
-const Adm1  = new Admin('email@teste.com', 'senha123');
-
-console.log(User1.isAdmin()); //False
-console.log(Adm1.isAdmin());  //True
-User1.mostraDados();
-Adm1.mostraDados();
+  //Unindo Operações
+  const maxCinquenta = usuarios
+    .map(item => ({ ...item, idade: item.idade * 2}))
+    .filter(item => item.idade <= 50);
+  console.log(maxCinquenta);
