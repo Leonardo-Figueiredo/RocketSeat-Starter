@@ -6,33 +6,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var empresa = {
-  nome: 'Rocketseat',
-  endereco: {
-    cidade: 'Rio do Sul',
-    estado: 'SC'
-  }
-}; //4.1
-
-var nome = empresa.nome,
-    _empresa$endereco = empresa.endereco,
-    cidade = _empresa$endereco.cidade,
-    estado = _empresa$endereco.estado;
-console.log(nome);
-console.log(cidade);
-console.log(estado); //4.2
-
-function mostraInfo(_ref) {
-  var nome = _ref.nome,
-      idade = _ref.idade;
-  return "".concat(nome, " tem ").concat(idade, " anos.");
-}
-
-console.log(mostraInfo({
-  nome: 'Diego',
-  idade: 23
-})); //5.1
-
+//5.1
 var arr = [1, 2, 3, 4, 5, 6];
 var x = arr[0],
     y = arr.slice(1);
