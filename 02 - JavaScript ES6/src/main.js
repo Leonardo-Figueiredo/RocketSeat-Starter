@@ -1,71 +1,87 @@
-// Função delay aciona o .then após 1s
-const delay = () => new Promise(resolve => setTimeout(resolve, 1000));
-async function umPorSegundo() {
-  const response = await delay();
-  await delay(console.log('1s'));
-  await delay(console.log('2s'));
-  await delay(console.log('3s'));
-}
-// function umPorSegundo() {
-//  delay().then(() => {
-//   console.log('1s');
+import api from './api';
 
-//   delay().then(() => {
-//    console.log('2s');
+class App {
+  constructor() {
+    this.repositories = [];
+    this.formEl = document.querySelector('#repo-form');
+    this.listEl = document.querySelector('#repo-list');
+    this.inputEl = document.querySelector('input[name=repository]');
 
-//     delay().then(() => {
-//      console.log('3s');
-//     });
-//   })
-//  });
-// }
-umPorSegundo();
+    this.registerHandlers();
+  }
 
-import axios from 'axios';
+  registerHandlers() {
+    this.formEl.addEventListener("submit", event => this.addRepository(event));
+  }
 
-class Api {
-  static async getUserFromGithub (username) {
-    try {
-      const response = await axios.get(`https://api.github.com/users/${username}`);
-      console.log(response.data);
-    } catch (err) {
-      console.warn('Erro na API');
+  setLoading(loading = true) {
+    if (loading === true) {
+      let loadingEl = document.createElement('span');
+      loadingEl.appendChild(document.createTextNode('Carregando...'));
+      loadingEl.setAttribute('id', 'loading');
+
+      this.formEl.appendChild(loadingEl);
+    } else {
+      document.getElementById('loading').remove();
     }
   }
-}
-// function getUserFromGithub(user) {
-//   axios.get(`https://api.github.com/users/${user}`)
-//     .then(response => {
-//       console.log(response.data);
-//     })
-//     .catch(err => {
-//       console.log('Usuário não existe');
-//     })
-// }
-Api.getUserFromGithub('diego3g');
-Api.getUserFromGithub('diego3g124123');
 
-class Github {
-  static async getRepositories(repo) {
+  async addRepository(event) {
+    event.preventDefault();
+
+      const repoInput = this.inputEl.value;
+      if (repoInput.length === 0) return;
+
+      this.setLoading();
+
     try {
-      const response = await axios.get(`https://api.github.com/repos/${repo}`);
-      console.log(response);
-    } catch (err) {
-      console.warn('Repositório não existente');
-    }
-  }
-}
-Github.getRepositories('rocketseat/rocketseat.com.br');
-Github.getRepositories('rocketseat/dslkvmskv');
+      const response = await api.get(`/repos/${repoInput}`);
+      const { name, description, html_url, owner: { avatar_url } } = response.data;
 
-const buscaUsuario = async user => {
-  try {
-    const response = await axios.get(`https://api.github.com/users/${user}`);
-    console.log(response.data);
-  } catch (err) {
-    console.warn('Usuário não existente!!');
+      this.repositories.push({
+        name,
+        description,
+        avatar_url,
+        html_url,
+      });
+
+      this.inputEl.value = "";
+
+      this.render();
+    } catch (err) {
+      alert('Repositório não existente');
+    }
+
+    this.setLoading(false);
+  }
+
+  render() {
+    this.listEl.innerHTML = "";
+
+    this.repositories.forEach(repo => {
+      let imgEl = document.createElement('img');
+      imgEl.setAttribute('src', repo.avatar_url);
+
+      let titleEl = document.createElement('strong');
+      titleEl.appendChild(document.createTextNode(repo.name));
+
+      let descriptionEl = document.createElement('p');
+      descriptionEl.appendChild(document.createTextNode(repo.description));
+
+      let linkEl = document.createElement('a');
+      linkEl.setAttribute('target', '_blank');
+      linkEl.setAttribute('href', repo.html_url);
+      linkEl.appendChild(document.createTextNode('Acessar'));
+
+      let listItemEl = document.createElement('li');
+      listItemEl.appendChild(imgEl);
+      listItemEl.appendChild(titleEl);
+      listItemEl.appendChild(descriptionEl);
+      listItemEl.appendChild(linkEl);
+
+      this.listEl.appendChild(listItemEl);
+    });
   }
 }
-buscaUsuario('diego3g');
-buscaUsuario('leonardo-figueiredo');
-buscaUsuario('leonardo-figueiredo1321321');
+
+new App();
