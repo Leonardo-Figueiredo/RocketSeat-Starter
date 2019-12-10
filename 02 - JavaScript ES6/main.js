@@ -1,15 +1,9 @@
-//6
-// const usuario = 'Diego';
-// const idade = 23;
-// console.log(`O usuário ${usuario} possui ${idade} anos`);
+import * as functions from './functions';
+// import somaFunction from './soma';
 
-//7
-const nome = 'Diego';
-const idade = 23;
+console.log(functions.soma(1, 2));
+console.log(functions.mult(4, 3));
+console.log(functions.sub(4, 3));
 
-const usuario = {
- nome,
- idade,
- cidade: 'Rio do Sul',
-};
-console.log(usuario);
+// console.log(soma(1,2));
+// console.log(sub(4,2));
