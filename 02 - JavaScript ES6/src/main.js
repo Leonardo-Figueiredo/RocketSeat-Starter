@@ -1,10 +1,39 @@
-// 1.1 
-// import ClasseUsuario, { idade } from './functions';
-// ClasseUsuario.info();
+const minhaPromise = () => new Promise((resolve, reject) => {
+  setTimeout(() => { resolve('OK') }, 2000);
+});
 
-// 1.2
-// alert(idade);
+// async function executaPromise() {
+//   //Forma com async/await
+//   const response = await minhaPromise();
+//   //  console.log(await minhaPromise());
+//   //  console.log(await minhaPromise());
+//   //  console.log(await minhaPromise());
+//   //  console.log(await minhaPromise());
 
-// 1.3
-import ClasseUsuario, { idade as IdadeUsuario} from './functions';
-console.log(IdadeUsuario);
+//   //Feito da forma antiga:
+//   // minhaPromise()
+//   // .then(response => {
+//   //   console.log(response);
+
+//   //   minhaPromise()
+//   //   .then(response => {
+//   //     console.log(response);
+      
+//   //     minhaPromise()
+//   //     .then(response => {
+//   //       console.log(response);
+//   //     });
+//   //   });
+//   // });
+// }
+//executaPromise();
+
+//Com Arrow Function
+const executaPromise = async () => {
+  console.log(await minhaPromise());
+  console.log(await minhaPromise());
+  console.log(await minhaPromise());
+  console.log(await minhaPromise());
+};
+
+executaPromise();
