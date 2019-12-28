@@ -4,26 +4,22 @@ const requireDir = require('require-dir');
 
 // Initializate app
 const app = express();
+app.use(express.json());
+
+// Security to acess the API with other domains
+app.use(cors());
 
 // Initializate DB
-mongoose.connect('mongodb://localhost:27017/nodeapi', 
-{ 
+mongoose.connect('mongodb://localhost:27017/nodeapi', { 
   useNewUrlParser: true,
   useUnifiedTopology:true,
 });
 requireDir('./src/models');
 
-const Product = mongoose.model('Product');
+// const Product = mongoose.model('Product');
 
-// First Route
-app.get('/', (req, res) => {
-  Product.create({
-    title: 'React Native',
-    description: 'Build native apps with React',
-    url: 'http://github.com/facebook/react-native',
-  });
+// Receive all requests and send to router
+app.use('/api', require('./src/routes'));
 
-  return res.send("Hello World");
-});
-
+// Listen Port to open the application
 app.listen(3001);
